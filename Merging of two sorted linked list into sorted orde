@@ -1,0 +1,71 @@
+// Merging of two sorted linked list into sorted order...
+struct node{
+  int data;
+  node *next;
+};
+void Push(node **head,int x)
+{
+    node *newnode=new node();
+    newnode->data=x;
+    newnode->next=*head;
+    *head=newnode;
+}
+node *SortedMerge(node *a,node *b)
+{
+    node dummy;
+    node *tail=&dummy;
+    dummy.next=NULL;
+    while(a!=NULL && b!=NULL)
+    {
+        if(a->data<=b->data){
+        Push(&tail->next,a->data);
+          a=a->next;
+          tail=tail->next;
+        }
+        else if(a->data>b->data){
+            Push(&tail->next,b->data);
+            b=b->next;
+            tail=tail->next;
+        }
+    }
+    if(a!=NULL){
+        while(a!=NULL){
+            Push(&tail->next,a->data);
+            a=a->next;
+            tail=tail->next;
+        }
+    }
+    if(b!=NULL){
+        while(b!=NULL){
+            Push(&tail->next,b->data);
+            b=b->next;
+            tail=tail->next;
+        }
+    } 
+    return (dummy.next);
+}
+void PrintList(node *head)
+{
+    while(head!=NULL){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+    node *a=NULL;
+    node *b=NULL;
+    Push(&a,20);
+    Push(&a,15);
+    Push(&a,10);
+    Push(&b,8);
+    Push(&b,7);
+    Push(&b,2);
+    PrintList(a);
+    PrintList(b);
+     node *res=SortedMerge(a,b);
+     PrintList(res);
+     return 0;
+}
+*/
