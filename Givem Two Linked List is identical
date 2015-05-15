@@ -1,0 +1,61 @@
+ // Is  Givem Two Linked List is identical..
+struct node {
+ int data;
+  node *next;
+};
+void Push(node **head,int x)
+{
+    node *newnode=new node();
+    newnode->data=x;
+    newnode->next= *head;
+    *head=newnode;
+}
+bool Isidentical(node *a,node *b)
+{
+    if(a==NULL && b==NULL)
+        return 1;
+    if(a!=NULL && b==NULL)
+        return 0;
+    if(a==NULL && b!=NULL)
+        return 0;
+      while(a!=NULL && b!=NULL)
+      {
+          if(a->data!=b->data)
+            return 0;
+          a=a->next;
+          b=b->next;
+      }
+      if(a!=NULL)
+        return 0;
+      if(b!=NULL)
+        return 0;
+      return 1;
+}
+void PrintList(node *head)
+{
+    while(head!=NULL){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+    node *a=NULL;
+    node *b=NULL;
+    Push(&a,10);
+    Push(&a,8);
+    Push(&a,5);
+    
+    Push(&b,10);
+    Push(&b,8);
+    Push(&b,5);
+    
+    PrintList(a);
+    PrintList(b);
+    if(Isidentical(a,b))
+        cout<<"The Two Given  Linked List is identical"<<endl;
+    else
+        cout<<"The Two Given  Linked List Is  not identical"<<endl;
+    return 0;
+}
