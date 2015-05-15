@@ -1,0 +1,50 @@
+// Move last node to first..
+struct node{
+  int data;
+  node *next;
+};
+void push(node **head,int x)
+{
+    node *newnode=new node();
+    newnode->data=x;
+    newnode->next=*head;
+    *head=newnode;
+}
+void MoveLastToFirst(node **head)
+{
+    node *temp;
+    node *currrent=*head;
+    while(currrent->next->next!=NULL)
+    {
+        currrent=currrent->next;
+    }
+    temp=currrent->next;
+    currrent->next=NULL;
+    temp->next=*head;
+    *head=temp;
+}
+void Printlist(node *head)
+{
+    while(head!=NULL)
+    {
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    
+    cout<<endl;
+}
+int main()
+{
+    node *head=NULL;
+     push(&head,9);
+     push(&head,7);
+     push(&head,6);
+     push(&head,5);
+     push(&head,2);
+     push(&head,1);
+     Printlist(head);
+     MoveLastToFirst(&head);
+     Printlist(head);
+     return 0;
+     
+}
