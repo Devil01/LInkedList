@@ -1,0 +1,57 @@
+// To check linked list palindrome ...
+/*struct node{
+  int data;
+  node *next;
+};
+void push(node **head,int x)
+{
+    node *new_node=new node();
+    new_node->data=x;
+    new_node->next=(*head);
+    *head=new_node;
+}
+int IsPalindrome(node * head)
+{
+    stack<node*>S;
+    node *current=head;
+    while(current!=NULL)
+    {
+        S.push(current);
+        current=current->next;
+    }
+   current=head;
+   while(current!=NULL)
+   {
+       if(current->data!=S.top()->data){
+         return 0;
+       }
+       S.pop();
+       current=current->next;
+  }
+  return 1;
+}
+void Print(node *head)
+{
+    while(head!=NULL)
+    {
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+ node *head=NULL;
+ push(&head,8);
+ push(&head,5);
+ push(&head,4);
+ push(&head,5);
+ push(&head,8);
+ Print(head);
+ if(IsPalindrome(head))
+    cout<<"It is palindrome";
+    else
+    cout<<"It is not  Palindrome";
+ return 0;
+}
+*/
