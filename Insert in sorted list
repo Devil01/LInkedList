@@ -1,0 +1,57 @@
+
+// Insert in sorted list..
+struct node{
+  int data;
+  node *next;
+};
+ 
+node *Newnode(int x)
+{
+    node *new_node=new node();
+    new_node->data=x;
+    new_node->next=NULL;
+    return new_node;
+} 
+void SortedInsert(node **head,node *newnode)
+{
+if((*head)==NULL || (*head)->data>=newnode->data){
+    newnode->next=*head;
+    *head=newnode;
+}
+else{
+    node *current=*head;
+    while(current->next!=NULL){
+        
+        if(current->next->data<newnode->data)
+            current=current->next;
+        else
+            break;
+    }
+    newnode->next=current->next;
+  current->next=newnode;
+}
+}
+void Print(node *head)
+{
+    while(head!=NULL){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+  cout<<endl;
+}
+int main()
+{
+    node *head=NULL;
+    node *newnode=Newnode(1);
+    SortedInsert(&head,newnode);
+    newnode=Newnode(7);
+    SortedInsert(&head,newnode);
+    newnode=Newnode(5);
+    SortedInsert(&head,newnode);
+    newnode=Newnode(8);
+    SortedInsert(&head,newnode);
+    newnode=Newnode(6);
+    SortedInsert(&head,newnode);
+    Print(head);
+    return 0;    
+}
