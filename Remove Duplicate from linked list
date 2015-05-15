@@ -1,0 +1,51 @@
+//Remove Duplicate from linked list..
+
+/*struct node{
+  int data;
+  node *next;
+};
+void push(node **head,int x)
+{
+    node *newnode=new node();
+    newnode->data=x;
+    newnode->next= *head;
+    *head=newnode;
+}
+void RemoveDuplicate(node *head)
+{
+    node *current=head;
+    while(current->next!=NULL)
+    {
+        if(current->data==current->next->data){
+            node *temp=current->next;
+            current->next=current->next->next;
+            free(temp);
+        }
+       else 
+        current=current->next;
+    }
+}
+void PrintList(node *head)
+{
+    while(head!=NULL){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    node *head=NULL;
+    push(&head,20);
+    push(&head,13);
+    push(&head,13);
+    push(&head,11);
+    push(&head,11);
+    push(&head,11);
+    PrintList(head);
+    RemoveDuplicate(head);
+    PrintList(head);
+    return 0;
+}
+*/
