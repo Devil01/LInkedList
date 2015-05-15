@@ -1,0 +1,79 @@
+//segerate the even and odd.. 
+struct node{
+  int data;
+  node *next;
+};
+void Push(node **head, int x)
+{
+    node *newnode=new node();
+    newnode->data=x;
+    newnode->next=*head;
+    *head=newnode;
+}
+void Segeregate(node **head)
+{
+    node *curr=*head;
+    node *End=*head;
+    node *prev=NULL;
+   while(End->next!=NULL)
+   {
+       End=End->next;
+   }
+   node *newend=End;
+   while(curr->data%2!=0 && curr!=End)
+   {
+       newend->next=curr;
+       newend->next->next= NULL;
+       newend=newend->next;
+       curr=curr->next;
+    }
+    if(curr->data%2==0){
+        *head=curr;
+        while(curr!=End){
+            if(curr->data%2==0){
+                prev=curr;
+                curr=curr->next;
+            }
+            else{
+                prev->next=curr->next;
+                curr->next=NULL;
+                newend->next=curr;
+                newend=newend->next;
+                curr=prev->next;
+            }
+        }
+    }
+    else
+       prev=curr;
+    if(newend!=End && End->data%2!=0){
+        prev->next=End->next;
+        End->next=NULL;
+        newend->next=End;
+  }
+}
+void PrinList(node *head)
+{
+    while(head!=NULL){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+    node *head=NULL;
+    Push(&head, 11);
+    Push(&head, 10);
+    Push(&head, 8);
+    Push(&head, 6);
+    Push(&head, 4);
+    Push(&head, 2);
+    Push(&head, 0);
+    PrinList(head);
+    Segeregate(&head);
+    PrinList(head);
+    return 0;
+    
+}
+
+ 
