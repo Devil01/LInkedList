@@ -1,0 +1,66 @@
+//  Detect and remove loop in linked list
+ struct node{
+     int data;
+     node *next;
+  };
+  void Push(node **head,int x)
+  {
+      node *newnode=new node();
+      newnode->data=x;
+      newnode->next=*head;
+      *head=newnode;
+}
+void RemoveLoop(node *head,node *loopnode)
+{
+    node *ptr1;
+    node *ptr2;
+    ptr1=head;
+    while(1){
+        ptr2=loopnode;
+        while(ptr2->next!=loopnode && ptr2->next!=ptr1){
+            ptr2=ptr2->next;
+        }
+        if(ptr2->next==ptr1)
+            break;
+        else
+            ptr1=ptr1->next;
+    }
+    ptr2->next=NULL;
+}
+ int  DetectLoop(node *head){
+  node *slowptr=head;
+  node *fastptr=head;
+  while(slowptr && fastptr && fastptr->next)
+  {
+       slowptr=slowptr->next;
+       fastptr=fastptr->next->next;
+     if(slowptr==fastptr){
+        RemoveLoop( head,slowptr);
+        return 1;
+     }  
+  }
+  return 0;
+}
+
+ void PrintList(node *head)
+ {
+      while(head!=NULL){
+        cout<<head->data<<" ";
+        head=head->next;
+      }
+      cout<<endl;
+ }
+ int main()
+ {
+     node *head=NULL;
+    Push(&head, 10);
+    Push(&head, 4);
+    Push(&head, 15);
+    Push(&head, 20);
+    Push(&head, 50);
+    // create  a loop for testing.
+    head->next->next->next->next->next=head->next->next;
+    DetectLoop(head);
+    PrintList(head);
+    return 0;
+ }
