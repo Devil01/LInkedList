@@ -1,0 +1,50 @@
+// Alternate deletion of linked list..
+struct node{
+  int data;
+  node *next;
+};
+void Push(node **head,int x)
+{
+     node *newnode=new node();
+     newnode->data=x;
+     newnode->next=*head;
+     *head=newnode;
+}
+void DeleteAlternatenode(node * head)
+{
+    node *prev=head;
+    node *temp=head->next;
+    while(prev!=NULL && temp!=NULL)
+    {
+        prev->next=temp->next;
+        free(temp);
+        prev=prev->next;
+       if(prev!=NULL)
+        temp=prev->next;;
+    }
+}
+void PrintList(node *head)
+{
+    while(head!=NULL)
+    {
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+    node *head=NULL;
+    Push(&head,9);
+    Push(&head,8);
+    Push(&head,6);
+    Push(&head,5);
+    Push(&head,4);
+    Push(&head,2);
+    Push(&head,1);
+    PrintList(head);
+    DeleteAlternatenode(head);
+    PrintList(head);
+    return 0;
+    
+}
