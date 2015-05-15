@@ -1,0 +1,56 @@
+//Sorted Intersection of linked list .. Recursive..
+struct node{
+  int data;
+  node *next;
+};
+void Push(node **head,int x)
+{
+    node *newnode=new node();
+    newnode->data=x;
+    newnode->next=*head;
+    *head=newnode;
+}
+node * SortedIntersection(node *a,node *b)
+{
+    if(a==NULL || b==NULL)
+        return NULL;
+    if(a->data<b->data)
+        return SortedIntersection(a->next,b);
+    if(a->data>b->data)
+        return SortedIntersection(a,b->next);
+     node *temp=new node();
+     temp->data=a->data;
+     temp->next=SortedIntersection(a->next,b->next);
+     return temp;
+}
+void PrintList(node *head)
+{
+    while(head!=NULL){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+    node *a=NULL;
+    node *b=NULL;
+  Push(&a, 6);
+  Push(&a, 5);
+  Push(&a, 4);
+  Push(&a, 3);
+  Push(&a, 2);
+  Push(&a, 1); 
+  
+   Push(&b, 8);
+  Push(&b, 6);
+  Push(&b, 4);
+  Push(&b, 2);
+  PrintList(a);
+  PrintList(b);
+node *intersection=SortedIntersection(a,b);
+PrintList(intersection);
+ return 0;
+  
+    
+}
